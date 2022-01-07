@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistencia
 {
+    /* 30 Esta clase debe colocarse como un servicio en la clase startup para que pueda ser accesible globalmente */
     public class GestionVehicularContext : DbContext
     {
         public GestionVehicularContext(DbContextOptions options) : base(options)
@@ -11,14 +12,14 @@ namespace Persistencia
             
         }
 
-        /* Metodo que viene de DbContext y estamos sobreescribiendo */
+        /* Metodo que viene de DbContext y estamos sobreescribiendo, no es necesario por ahora */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   
         }
 
-        /* ######################## */
-        /* Mapeando las clases a EF */
-        /* ######################## */
+        /* ########################### */
+        /* 30 Mapeando las clases a EF */
+        /* ########################### */
         public DbSet<Gasolinera> Gasolinera { get; set; }
         public DbSet<Lavadero> Lavadero { get; set; }
         public DbSet<Lavado> Lavado { get; set; }

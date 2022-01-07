@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Persistencia;
 
 namespace WebAPI
 {
@@ -26,6 +28,12 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /* 30 Agregamos la clase Context al servcio y en el parametro del metodo ponemos la cadena 
+            de conexion que va a tener toda la solucion, esta cadena la ponemos en el appsettings.json
+            y la invocamos aqui */
+            services.AddDbContext<GestionVehicularContext>(opt => {
+                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

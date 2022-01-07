@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Dominio
 {
@@ -6,6 +7,7 @@ namespace Dominio
     {
         public int TipoLavadoId { get; set; }        
         public string Nombre { get; set; }
-        public string Descripcion { get; set; }        
+        public string Descripcion { get; set; }
+        public ICollection<Lavado> Lavado { get; set; }
     }
 }

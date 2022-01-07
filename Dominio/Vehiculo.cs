@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Dominio
 {
@@ -14,9 +15,13 @@ namespace Dominio
         public string NumChasis { get; set; }
         public string Vin { get; set; }
         public string Matricula { get; set; }
-        public string TipoVehiculo { get; set; }//foranea
-        public string Marca { get; set; }//foranea
         public DateTime FechaCreacion { get; set; }
         public byte[] FotoVehiculo { get; set; }
+        public TipoVehiculo TipoVehiculo { get; set; }
+        public MarcaVehiculo MarcaVehiculo { get; set; }
+        public TipoCombustible TipoCombustible { get; set; }
+        public ICollection<Lavado> Lavado { get; set; }
+        public ICollection<Mantenimiento> Mantenimiento { get; set; }
+        public ICollection<RecargaCombustible> RecargaCombustible { get; set; }
     }
 }

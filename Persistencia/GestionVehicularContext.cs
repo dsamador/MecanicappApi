@@ -1,4 +1,5 @@
 
+using System.Linq;
 using Dominio;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ namespace Persistencia
 
         /* Metodo que viene de DbContext y estamos sobreescribiendo, no es necesario por ahora */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {   
+        {               
         }
 
         /* ########################### */

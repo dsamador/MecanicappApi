@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dominio
 {
@@ -6,6 +7,8 @@ namespace Dominio
     {
         public int MantenimientoId { get; set; }
         public DateTime FechaMantenimiento { get; set; }
+        
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Valor { get; set; }
         public string Nota { get; set; }
         public byte[] Comprobante { get; set; }

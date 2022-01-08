@@ -1,0 +1,1 @@
+#Capa para logica de negocio, la logica no debe ir en la capa de los controladores

@@ -3,6 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dominio;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Persistencia;
 
 namespace Aplicacion.Gestion
 {
@@ -18,9 +20,17 @@ namespace Aplicacion.Gestion
         /* 32 Clase que representa la consulta, primero le especificamos que queremos una ListaTipoMantenimiento en el formato de List<TipoMantenimiento>  */
         public class Manejador : IRequestHandler<ListaTipoMantenimiento, List<TipoMantenimiento>>
         {
-            public Task<List<TipoMantenimiento>> Handle(ListaTipoMantenimiento request, CancellationToken cancellationToken)
+
+            private readonly GestionVehicularContext _context;
+            
+            public Manejador(GestionVehicularContext context){
+                _context = context;
+
+            }
+            public async Task<List<TipoMantenimiento>> Handle(ListaTipoMantenimiento request, CancellationToken cancellationToken)
             {
-                throw new System.NotImplementedException();
+                var tiposMantenimiento = await _context.TipoMantenimiento.ToListAsync();
+                return tiposMantenimiento;
             }
         }
     }

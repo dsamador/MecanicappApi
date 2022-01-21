@@ -21,5 +21,13 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<List<TipoMantenimiento>>> Get(){
             return await _mediator.Send(new Consulta.ListaTipoMantenimiento());
         }
+        
+        //http://localhost:5000/api/TipoMantenimiento/{id}
+        //http://localhost:5000/api/TipoMantenimiento/2
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TipoMantenimiento>> Detalle(int id){
+            return await _mediator.Send(new ConsultaId.TipoMantenimientoUnico{Id = id});
+        }
     }
+
 }

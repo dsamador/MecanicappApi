@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Persistencia;
 using Dominio;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aplicacion.Gestion
 {
@@ -12,6 +13,7 @@ namespace Aplicacion.Gestion
     {
         public class Ejecuta : IRequest
         {                          
+            [Required(ErrorMessage = "Por favor ingrese el nombre del tipo de mantenimiento")]
             public string Nombre { get; set; }
             public string Descripcion { get; set; }     
          

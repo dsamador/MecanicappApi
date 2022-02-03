@@ -6,6 +6,7 @@ using System.Threading;
 using Persistencia;
 using Dominio;
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 
 namespace Aplicacion.Gestion
 {
@@ -13,10 +14,19 @@ namespace Aplicacion.Gestion
     {
         public class Ejecuta : IRequest
         {                          
-            [Required(ErrorMessage = "Por favor ingrese el nombre del tipo de mantenimiento")]
+            //[Required(ErrorMessage = "Por favor ingrese el nombre")]// esto es reemplazado por fluentvalidation
             public string Nombre { get; set; }
             public string Descripcion { get; set; }     
          
+        }
+
+        public class EjecutaValidacion : AbstractValidator<Ejecuta>
+        {
+            public EjecutaValidacion()
+            {//Esto es fluent validation
+                RuleFor(x => x.Nombre).NotEmpty();
+                RuleFor(x => x.Descripcion).NotEmpty();
+            }
         }
 
         public class Manejador : IRequestHandler<Ejecuta>

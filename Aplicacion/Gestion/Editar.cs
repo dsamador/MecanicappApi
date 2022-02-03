@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
 using MediatR;
 using Persistencia;
 
@@ -14,6 +15,15 @@ namespace Aplicacion.Gestion
             public string Nombre { get; set; }
             public string Descripcion { get; set; }
 
+        }
+
+        public class EjecutaValidacion : AbstractValidator<Ejecuta>
+        {
+            public EjecutaValidacion()
+            {//Esto es fluent validation
+                RuleFor(x => x.Nombre).NotEmpty();
+                RuleFor(x => x.Descripcion).NotEmpty();
+            }
         }
 
         public class Manejador : IRequestHandler<Ejecuta>
